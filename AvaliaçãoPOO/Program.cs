@@ -92,10 +92,27 @@ class Pessoa
             DateTime dataAtual = DateTime.Now;
             return advogados.Where(a => (dataAtual - a.dataNascimento).Days/365 >= idadeMin && (dataAtual - a.dataNascimento).Days/ 365 <= idadeMx).ToList();
         }
+
+        public static List<Cliente> ClientesEntreIdades(List<Cliente> clientes, int idadeMin, int idadeMx)
+        {
+            DateTime dataAtual = DateTime.Now;
+            return clientes.Where(a => (dataAtual - a.dataNascimento).Days/365 >= idadeMin && (dataAtual - a.dataNascimento).Days/ 365 <= idadeMx).ToList();
+        }
+
+        public static List<Cliente> ClientePorEstadoCivil(List<Cliente> clientes, string estadoCivil)
+        {
+            return clientes.Where(a => a.estadoCivil.Equals(estadoCivil, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+
+        public static List<Cliente> ClienteOrdemAlfabetica(List<Cliente> clientes)
+        {
+            return clientes.OrderBy(a => a.nome).ToList();
+        }
+
+        
+
+
     }
-
-
-
 
 
 }
