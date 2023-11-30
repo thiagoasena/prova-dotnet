@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
+using System.Linq;
 
 class Pessoa
 {
@@ -8,14 +8,14 @@ class Pessoa
     public DateTime DataNascimento { get; set; }
     public string CPF { get; set; }
 
-    public Pessoa (string Nome, DateTime DataNascimento, string CPF)
+    public Pessoa (string Nome, DateTime DataNascimento, string cpf)
     {
         Nome = Nome; 
         DataNascimento = DataNascimento;
-        CPF = ValidarCPF(cpf) ? CPF : throw new ArgumentException("CPF");
+        CPF = ValidarCPF(cpf) ? cpf : throw new ArgumentException("CPF");
     }
 
-    private bool ValidarCPF (string cpf)
+    private bool ValidarCPF(string cpf)
     {
         if (String.IsNullOrWhiteSpace(cpf))
         return false;   
@@ -27,5 +27,11 @@ class Pessoa
 
         if(!cpf.All(char.IsDigit))
         return false;
+    }
+
+    class Advogado : Pessoa {
+        public string CNA {get; set;}
+
+        public Advogado(string nome, DateTime dataNascimento, )
     }
 }
