@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 
 class Pessoa
 {
@@ -32,6 +33,14 @@ class Pessoa
     class Advogado : Pessoa {
         public string CNA {get; set;}
 
-        public Advogado(string nome, DateTime dataNascimento, )
+        public Advogado(string nome, DateTime dataNascimento, string cpf, string cna)
+        : base(nome, dataNascimento, cpf)
+        {
+            CNA = ValidarCNA(cna) ? cna : throw new ArgumentException("CNA INVALIDO");
+        }
+
+        private bool ValidarCNA(string cna){
+
+        }
     }
 }
